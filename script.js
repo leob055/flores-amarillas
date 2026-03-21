@@ -58,3 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   setInterval(draw, 30);
 });
+window.addEventListener("resize", () => {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+});
