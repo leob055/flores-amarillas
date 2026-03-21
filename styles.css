@@ -19,87 +19,21 @@ button {
   box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
-/* ESCENA */
-#scene {
-  position: relative;
-  width: 320px;
-  height: 400px;
-  margin-top: 30px;
-  transform: translateY(80px);
-  opacity: 0;
-  transition: all 1s ease;
-}
-
-#scene.show {
-  transform: translateY(0);
-  opacity: 1;
-}
-
-/* ENVOLTURA */
-#wrapper {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 240px;
-  background: linear-gradient(145deg, #111, #333);
-  clip-path: polygon(0% 100%, 50% 25%, 100% 100%);
-  z-index: 1;
-}
-
-/* CINTA */
-#ribbon {
-  position: absolute;
-  bottom: 50px;
-  left: 50%;
-  width: 70px;
-  height: 20px;
-  background: gold;
-  transform: translateX(-50%);
-  border-radius: 6px;
-  z-index: 2;
-}
-
-/* RAMO */
+/* IMAGEN */
 #bouquet {
-  position: absolute;
-  top: 0;
-  width: 100%;
-  height: 280px;
-  z-index: 3;
-}
+  width: 280px;
+  margin-top: 30px;
 
-/* FLOR */
-.flower {
-  position: absolute;
-  width: 40px;
-  height: 40px;
+  /* estado inicial (oculto abajo) */
+  transform: translateY(200px);
   opacity: 0;
-  transform: scale(0.3);
-  transition: all 0.5s ease;
+
+  transition: all 1.2s cubic-bezier(.7,-0.2,.2,1.2);
 }
 
-/* pétalos */
-.petal {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(circle at 30% 30%, #fff176, #fbc02d);
-  border-radius: 50%;
-}
-
-/* centro */
-.center {
-  position: absolute;
-  width: 10px;
-  height: 10px;
-  background: #5d4037;
-  border-radius: 50%;
-  top: 15px;
-  left: 15px;
-}
-
-/* visible */
-.flower.show {
+/* animación */
+#bouquet.show {
+  transform: translateY(0);
   opacity: 1;
 }
 
@@ -107,7 +41,7 @@ button {
 #message {
   margin-top: 20px;
   opacity: 0;
-  transition: 1s;
+  transition: opacity 1s;
 }
 
 #message.show {
