@@ -6,7 +6,7 @@ trigger.addEventListener("click", () => {
   createBouquet();
 
   setTimeout(() => {
-    bouquet.classList.add("move"); // se van a la esquina
+    bouquet.classList.add("move");
   }, 2000);
 
   setTimeout(() => {
@@ -17,28 +17,28 @@ trigger.addEventListener("click", () => {
 function createBouquet() {
   bouquet.innerHTML = "";
 
-  const total = 25; // cantidad de flores (tupido)
-  const radius = 100;
+  const total = 25;
+  const centerX = 150;
+  const centerY = 150;
+  const radius = 90;
 
   for (let i = 0; i < total; i++) {
     const flower = document.createElement("div");
     flower.classList.add("flower");
 
-    // distribución circular compacta (tipo ramo real)
     const angle = Math.random() * Math.PI * 2;
     const r = Math.sqrt(Math.random()) * radius;
 
-    const x = 150 + r * Math.cos(angle);
-    const y = 120 + r * Math.sin(angle);
+    const x = centerX + r * Math.cos(angle);
+    const y = centerY + r * Math.sin(angle);
 
     flower.style.left = x + "px";
     flower.style.top = y + "px";
 
     bouquet.appendChild(flower);
 
-    // aparición escalonada
     setTimeout(() => {
       flower.classList.add("show");
-    }, i * 80);
+    }, i * 60);
   }
 }
