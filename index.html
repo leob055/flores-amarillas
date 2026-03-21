@@ -2,15 +2,52 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Para ti 💛</title>
+  <title>Para ti</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
 <div class="container">
-  <h1>Haz clic 💛</h1>
-  <div id="bouquet" class="hidden"></div>
-  <p id="message">Para ti, porque haces florecer todo 🌼</p>
+  <h1 id="trigger">Haz clic</h1>
+
+  <svg id="bouquet" viewBox="0 0 200 300">
+    
+    <!-- Tallos -->
+    <line class="stem" x1="100" y1="300" x2="100" y2="150"/>
+    <line class="stem" x1="100" y1="300" x2="60" y2="170"/>
+    <line class="stem" x1="100" y1="300" x2="140" y2="170"/>
+    <line class="stem" x1="100" y1="300" x2="40" y2="200"/>
+    <line class="stem" x1="100" y1="300" x2="160" y2="200"/>
+
+    <!-- Flores -->
+    <g class="flower" transform="translate(100,150)">
+      <circle r="8" class="center"/>
+      <circle r="18" class="petal"/>
+    </g>
+
+    <g class="flower" transform="translate(60,170)">
+      <circle r="8" class="center"/>
+      <circle r="18" class="petal"/>
+    </g>
+
+    <g class="flower" transform="translate(140,170)">
+      <circle r="8" class="center"/>
+      <circle r="18" class="petal"/>
+    </g>
+
+    <g class="flower" transform="translate(40,200)">
+      <circle r="8" class="center"/>
+      <circle r="18" class="petal"/>
+    </g>
+
+    <g class="flower" transform="translate(160,200)">
+      <circle r="8" class="center"/>
+      <circle r="18" class="petal"/>
+    </g>
+
+  </svg>
+
+  <p id="message">Para una linda como tu, unas flores lindas</p>
 </div>
 
 <script src="script.js"></script>
