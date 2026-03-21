@@ -6,43 +6,52 @@ document.addEventListener("DOMContentLoaded", () => {
   const message = document.getElementById("message");
 
   trigger.addEventListener("click", () => {
-
     scene.classList.add("show");
     createBouquet();
 
     setTimeout(() => {
       message.classList.add("show");
     }, 2500);
-
   });
 
   function createBouquet() {
     bouquet.innerHTML = "";
 
-    const total = 28;
-    const centerX = 160;
-    const centerY = 120;
-    const radius = 100;
+    const total = 35;
 
     for (let i = 0; i < total; i++) {
 
       const flower = document.createElement("div");
       flower.classList.add("flower");
 
-      const angle = Math.random() * Math.PI * 2;
-      const r = Math.sqrt(Math.random()) * radius;
+      // PROFUNDIDAD (clave)
+      const depth = Math.random(); // 0 a 1
 
-      const x = centerX + r * Math.cos(angle);
-      const y = centerY + r * Math.sin(angle);
+      // forma de cúpula (ramo real)
+      const angle = Math.random() * Math.PI;
+      const radius = 100 * Math.sqrt(Math.random());
+
+      const x = 160 + radius * Math.cos(angle);
+      const y = 140 - radius * Math.sin(angle);
+
+      // escala según profundidad
+      const scale = 0.6 + depth * 0.7;
+
+      // rotación ligera
+      const rotate = (Math.random() - 0.5) * 40;
 
       flower.style.left = x + "px";
       flower.style.top = y + "px";
+      flower.style.transform = `scale(${scale}) rotate(${rotate}deg)`;
 
-      // pétalos (simulan rosa)
-      for (let j = 0; j < 3; j++) {
+      // z-index para capas reales
+      flower.style.zIndex = Math.floor(depth * 100);
+
+      // pétalos múltiples
+      for (let j = 0; j < 4; j++) {
         const petal = document.createElement("div");
         petal.classList.add("petal");
-        petal.style.transform = `scale(${1 - j * 0.2})`;
+        petal.style.transform = `rotate(${j * 45}deg) scale(${1 - j * 0.15})`;
         flower.appendChild(petal);
       }
 
@@ -54,7 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       setTimeout(() => {
         flower.classList.add("show");
-      }, i * 60);
+      }, i * 40);
     }
   }
 
