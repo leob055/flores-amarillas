@@ -8,7 +8,16 @@ body {
   font-family: sans-serif;
 }
 
-/* BOTÓN */
+/* CONTENEDOR ORDENADO */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 90vh;
+}
+
+/* BOTÓN ARRIBA */
 button {
   padding: 12px 28px;
   border-radius: 25px;
@@ -17,31 +26,34 @@ button {
   cursor: pointer;
   font-size: 16px;
   box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  margin-top: 20px;
 }
 
-/* IMAGEN */
+/* RAMO GRANDE CENTRO */
 #bouquet {
-  width: 280px;
-  margin-top: 30px;
+  width: 420px;
 
-  /* estado inicial (oculto abajo) */
-  transform: translateY(200px);
+  transform: translateY(300px) scale(0.8);
   opacity: 0;
 
-  transition: all 1.2s cubic-bezier(.7,-0.2,.2,1.2);
+  transition: all 1.3s cubic-bezier(.34,1.56,.64,1);
+  filter: drop-shadow(0 15px 25px rgba(0,0,0,0.3));
 }
 
-/* animación */
+/* ANIMACIÓN */
 #bouquet.show {
-  transform: translateY(0);
+  transform: translateY(0) scale(1);
   opacity: 1;
 }
 
-/* MENSAJE */
+/* MENSAJE ABAJO */
 #message {
-  margin-top: 20px;
+  margin-bottom: 30px;
+  font-size: 18px;
+  color: #3e2723;
   opacity: 0;
-  transition: opacity 1s;
+  transition: opacity 1s ease;
+  text-align: center;
 }
 
 #message.show {
