@@ -1,27 +1,44 @@
 const trigger = document.getElementById("trigger");
-const stems = document.querySelectorAll(".stem");
-const flowers = document.querySelectorAll(".flower");
+const bouquet = document.getElementById("bouquet");
 const message = document.getElementById("message");
 
 trigger.addEventListener("click", () => {
+  createBouquet();
 
-  // Animar tallos primero
-  stems.forEach((stem, i) => {
-    setTimeout(() => {
-      stem.classList.add("grow");
-    }, i * 200);
-  });
+  setTimeout(() => {
+    bouquet.classList.add("move"); // se van a la esquina
+  }, 2000);
 
-  // Luego flores
-  flowers.forEach((flower, i) => {
-    setTimeout(() => {
-      flower.classList.add("bloom");
-    }, 800 + i * 200);
-  });
-
-  // Mensaje final
   setTimeout(() => {
     message.classList.add("show");
-  }, 1800);
-
+  }, 3000);
 });
+
+function createBouquet() {
+  bouquet.innerHTML = "";
+
+  const total = 25; // cantidad de flores (tupido)
+  const radius = 100;
+
+  for (let i = 0; i < total; i++) {
+    const flower = document.createElement("div");
+    flower.classList.add("flower");
+
+    // distribución circular compacta (tipo ramo real)
+    const angle = Math.random() * Math.PI * 2;
+    const r = Math.sqrt(Math.random()) * radius;
+
+    const x = 150 + r * Math.cos(angle);
+    const y = 120 + r * Math.sin(angle);
+
+    flower.style.left = x + "px";
+    flower.style.top = y + "px";
+
+    bouquet.appendChild(flower);
+
+    // aparición escalonada
+    setTimeout(() => {
+      flower.classList.add("show");
+    }, i * 80);
+  }
+}
