@@ -4,93 +4,70 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: radial-gradient(circle at top, #fff9c4, #fbc02d);
-  font-family: 'Segoe UI', sans-serif;
-  overflow: hidden;
+  background: linear-gradient(#fff8c6, #f4c430);
+  font-family: sans-serif;
 }
 
 .container {
   text-align: center;
-  position: relative;
 }
 
 h1 {
-  color: #5d4037;
   cursor: pointer;
+  color: #4e342e;
 }
 
+/* SVG */
+#bouquet {
+  width: 220px;
+  margin-top: 20px;
+}
+
+/* Tallos */
+.stem {
+  stroke: #2e7d32;
+  stroke-width: 3;
+  stroke-dasharray: 200;
+  stroke-dashoffset: 200;
+  transition: stroke-dashoffset 1s ease;
+}
+
+/* Animación de crecimiento */
+.stem.grow {
+  stroke-dashoffset: 0;
+}
+
+/* Flores */
+.flower {
+  opacity: 0;
+  transform: scale(0.2);
+  transform-origin: center;
+  transition: transform 0.6s ease, opacity 0.6s ease;
+}
+
+.flower.bloom {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Estilo flor */
+.center {
+  fill: #5d4037;
+}
+
+.petal {
+  fill: #fdd835;
+  opacity: 0.9;
+}
+
+/* Mensaje */
 #message {
   margin-top: 20px;
   opacity: 0;
-  transform: translateY(20px);
-  transition: all 1s ease;
-  color: #4e342e;
+  transition: opacity 1s ease;
+  color: #3e2723;
 }
 
 #message.show {
   opacity: 1;
-  transform: translateY(0);
-}
-
-/* Bouquet */
-#bouquet {
-  width: 200px;
-  height: 300px;
-  margin: auto;
-  position: relative;
-  transform: translateY(100px) scale(0.5);
-  opacity: 0;
-  transition: all 1.2s cubic-bezier(.68,-0.55,.27,1.55);
-}
-
-#bouquet.show {
-  transform: translateY(0) scale(1);
-  opacity: 1;
-}
-
-/* Flowers */
-.flower {
-  position: absolute;
-  width: 40px;
-  height: 40px;
-  background: radial-gradient(circle, #ffeb3b 40%, #fdd835 60%);
-  border-radius: 50%;
-  transform: scale(0);
-  animation: bloom 0.8s forwards;
-}
-
-.flower::after {
-  content: '';
-  position: absolute;
-  width: 10px;
-  height: 10px;
-  background: #6d4c41;
-  border-radius: 50%;
-  top: 15px;
-  left: 15px;
-}
-
-@keyframes bloom {
-  to {
-    transform: scale(1);
-  }
-}
-
-/* Stems */
-.stem {
-  position: absolute;
-  width: 4px;
-  height: 100px;
-  background: #2e7d32;
-  bottom: 0;
-  left: 50%;
-  transform: scaleY(0);
-  transform-origin: bottom;
-  animation: growStem 0.8s forwards;
-}
-
-@keyframes growStem {
-  to {
-    transform: scaleY(1);
-  }
 }
