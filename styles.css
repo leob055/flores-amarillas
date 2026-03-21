@@ -2,76 +2,89 @@ body {
   margin: 0;
   height: 100vh;
   overflow: hidden;
-  background: radial-gradient(circle, #fff8dc, #f4c430);
+  background: radial-gradient(circle at center, #fff3b0, #d4a017 80%);
   font-family: sans-serif;
 }
 
-/* partículas fondo */
+/* PARTICULAS */
 #particles {
   position: fixed;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
   z-index: 0;
 }
 
-/* layout EXACTO */
+/* SPOTLIGHT */
+.spotlight {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background: radial-gradient(circle at center, rgba(255,255,255,0.4), transparent 60%);
+  z-index: 1;
+}
+
+/* LAYOUT */
 .container {
   position: relative;
   z-index: 2;
-
   height: 100vh;
   display: grid;
   grid-template-rows: auto 1fr auto;
-  align-items: center;
   justify-items: center;
+  align-items: center;
 }
 
-/* BOTÓN ARRIBA */
+/* BOTÓN */
 button {
   margin-top: 20px;
   padding: 12px 30px;
   border-radius: 30px;
   border: none;
   background: linear-gradient(135deg, #fbc02d, #fdd835);
-  font-size: 16px;
   cursor: pointer;
+  font-size: 16px;
   box-shadow: 0 5px 20px rgba(0,0,0,0.3);
 }
 
-/* RAMO CENTRO */
+/* RAMO */
 #bouquet {
   width: 420px;
 
   opacity: 0;
-  transform: translateY(400px) scale(0.7);
+  transform: scale(0.6) translateY(200px);
+  filter: blur(10px);
 
-  transition: all 1.5s cubic-bezier(.22,1,.36,1);
-
-  /* brillo suave */
-  filter: drop-shadow(0 15px 30px rgba(0,0,0,0.4));
+  transition: all 1.8s cubic-bezier(.22,1,.36,1);
 }
 
-/* ENTRADA CINEMÁTICA */
+/* ENTRADA CINE */
 #bouquet.show {
   opacity: 1;
-  transform: translateY(0) scale(1);
-  animation: float 4s ease-in-out infinite;
+  transform: scale(1) translateY(0);
+  filter: blur(0);
+
+  animation: float 5s ease-in-out infinite, glow 3s ease-in-out infinite;
 }
 
 /* flotación */
 @keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
 }
 
-/* MENSAJE ABAJO */
+/* glow suave */
+@keyframes glow {
+  0%,100% { filter: drop-shadow(0 10px 25px rgba(0,0,0,0.3)); }
+  50% { filter: drop-shadow(0 20px 40px rgba(255,215,0,0.6)); }
+}
+
+/* MENSAJE */
 #message {
   margin-bottom: 30px;
   font-size: 18px;
   opacity: 0;
-  transition: 1s;
+  transition: 1.5s;
 }
 
 #message.show {
