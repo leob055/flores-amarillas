@@ -6,28 +6,40 @@ document.addEventListener("DOMContentLoaded", () => {
 
   trigger.addEventListener("click", () => {
 
+    // vibración (solo móvil compatible)
+    if (navigator.vibrate) {
+      navigator.vibrate(30);
+    }
+
     bouquet.classList.add("show");
 
     setTimeout(() => {
       message.classList.add("show");
-    }, 1800);
+    }, 1500);
 
   });
 
-  // PARTICULAS MEJORADAS
+  // PARTICULAS OPTIMIZADAS
   const canvas = document.getElementById("particles");
   const ctx = canvas.getContext("2d");
 
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+
+  resizeCanvas();
+  window.addEventListener("resize", resizeCanvas);
 
   const particles = [];
 
-  for (let i = 0; i < 80; i++) {
+  const total = window.innerWidth < 500 ? 40 : 80; // 🔥 menos en móvil
+
+  for (let i = 0; i < total; i++) {
     particles.push({
       x: Math.random() * canvas.width,
       y: Math.random() * canvas.height,
-      r: Math.random() * 2.5,
+      r: Math.random() * 2,
       speed: Math.random() * 1 + 0.3
     });
   }
@@ -37,7 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     particles.forEach(p => {
       ctx.beginPath();
-      ctx.fillStyle = "rgba(255,215,0,0.8)";
+      ctx.fillStyle = "rgba(255,215,0,0.7)";
       ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
       ctx.fill();
     });
@@ -48,7 +60,6 @@ document.addEventListener("DOMContentLoaded", () => {
   function update() {
     particles.forEach(p => {
       p.y += p.speed;
-
       if (p.y > canvas.height) {
         p.y = 0;
         p.x = Math.random() * canvas.width;
@@ -57,8 +68,4 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   setInterval(draw, 30);
-});
-window.addEventListener("resize", () => {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
 });
