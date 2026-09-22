@@ -118,3 +118,23 @@ button {
 #message.show {
   opacity: 1;
 }
+/* LLUVIAS DE GIRASOLES */
+.sunflower {
+  position: fixed;
+  top: -50px;
+  z-index: 10;
+  pointer-events: none;
+  user-select: none;
+  animation: fall linear forwards;
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(105vh) rotate(360deg);
+    opacity: 0.9;
+  }
+}
