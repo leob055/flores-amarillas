@@ -17,7 +17,40 @@ document.addEventListener("DOMContentLoaded", () => {
       message.classList.add("show");
     }, 1500);
 
+    // Iniciar lluvia de girasoles al presionar el botón
+    startSunflowerRain();
+
   });
+
+  // FUNCIÓN PARA CREAR UN GIRASOL CAYENDO
+  function createSunflower() {
+    const sunflower = document.createElement("div");
+    sunflower.classList.add("sunflower");
+    sunflower.innerText = "🌻";
+
+    // Posición horizontal aleatoria
+    sunflower.style.left = Math.random() * 100 + "vw";
+    
+    // Tamaño aleatorio entre 20px y 40px
+    const size = Math.random() * 20 + 20; 
+    sunflower.style.fontSize = size + "px";
+
+    // Tiempo de caída aleatorio entre 3 y 6 segundos
+    const duration = Math.random() * 3 + 3;
+    sunflower.style.animationDuration = duration + "s";
+
+    document.body.appendChild(sunflower);
+
+    // Limpieza automática del DOM al terminar la animación
+    setTimeout(() => {
+      sunflower.remove();
+    }, duration * 1000);
+  }
+
+  // GENERADOR CONTINUO DE GIRASOLES
+  function startSunflowerRain() {
+    setInterval(createSunflower, 250);
+  }
 
   // PARTICULAS OPTIMIZADAS
   const canvas = document.getElementById("particles");
@@ -33,7 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const particles = [];
 
-  const total = window.innerWidth < 500 ? 40 : 80; // 🔥 menos en móvil
+  const total = window.innerWidth < 500 ? 40 : 80;
 
   for (let i = 0; i < total; i++) {
     particles.push({
